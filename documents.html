@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Official Documents | Project GLASS</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for Legislative UI Polish -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
@@ -15,13 +13,11 @@
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col">
 
-    <!-- Top Institutional Bar -->
     <div class="bg-gradient-to-r from-blue-900 to-indigo-950 text-white text-xs tracking-widest uppercase py-2 px-6 text-center md:text-left border-b border-blue-800 flex justify-between items-center">
         <span>Lydia D. Villangca Trade School • Official SSLG Repository</span>
         <span class="hidden md:inline-block text-blue-300">Project GLASS v1.0 (2026-2027)</span>
     </div>
 
-    <!-- Main Navigation Header -->
     <header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-4">
@@ -42,7 +38,6 @@
         </div>
     </header>
 
-    <!-- Sub-page Title Block -->
     <section class="bg-white border-b border-slate-200 py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left md:flex md:items-center md:justify-between gap-4">
             <div>
@@ -53,10 +48,8 @@
         </div>
     </section>
 
-    <!-- Document System Grid Layer -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col lg:flex-row gap-8">
         
-        <!-- Left Side: Interactive Sidebar Navigation Filter -->
         <aside class="lg:w-1/4 space-y-2">
             <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 block px-3 mb-2">Select Gazette Category</span>
             <button onclick="setActiveTab('RESOLUTIONS', 'RESOLUTION NO.')" id="tab-RESOLUTIONS" class="w-full text-left px-4 py-3 rounded-xl transition text-sm font-medium text-slate-600 hover:bg-slate-100 flex items-center justify-between border border-transparent">
@@ -77,7 +70,6 @@
             </button>
         </aside>
 
-        <!-- Right Side: Live Table Database View -->
         <section class="flex-grow bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden flex flex-col justify-between">
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
@@ -89,7 +81,6 @@
                         </tr>
                     </thead>
                     <tbody id="document-table-body" class="divide-y divide-slate-100 text-sm font-medium text-slate-800">
-                        <!-- Dynamic content injected here -->
                         <tr>
                             <td colspan="3" class="py-12 text-center text-slate-400 font-medium">
                                 <svg class="animate-spin h-5 w-5 mx-auto mb-2 text-blue-600" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
@@ -100,7 +91,6 @@
                 </table>
             </div>
             
-            <!-- Quick Institutional Alert Stamp inside the ledger card -->
             <div class="bg-slate-50 border-t border-slate-100 py-3 px-6 text-[11px] text-slate-400 flex items-center justify-between">
                 <span>Data Source: Google Sheets Live CSV Feed Integration</span>
                 <span class="font-mono text-blue-500">Status: Operational</span>
@@ -108,7 +98,6 @@
         </section>
     </main>
 
-    <!-- Footer System -->
     <footer class="bg-slate-950 text-slate-400 text-xs py-8 border-t border-slate-800 mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>© 2026 Supreme Secondary Learner Government. Built for student public accountability.</p>
@@ -120,15 +109,22 @@
         </div>
     </footer>
 
-    <!-- Google Sheets Dynamic CSV Fetch & Render Script -->
     <script>
-        // REPLACE THIS URL with your actual Google Sheet published Comma-separated values (.csv) link
-        const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIFgXyOttJeJGsVaLwfFtNWb-c1YCJiJ8R5siL32ykA47xYYY7b8KmPXm_42vNAbaHXOkcqEG3tRCu/pub?output=csvCu/pub?output=csv";
+        // 1. PASTE YOUR BASE CSV URL HERE (Remove everything after the main key, i.e., stop before &gid= or &single=)
+        const BASE_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIFgXyOttJeJGsVaLwfFtNWb-c1YCJiJ8R5siL32ykA47xYYY7b8KmPXm_42vNAbaHXOkcqEG3tRCu/pub?output=csv";
+
+        // 2. PASTE THE UNIQUE GID NUMBERS FROM YOUR BROWSER ADDRESS BAR FOR EACH TAB HERE
+        const GID_MAPPING = {
+            "RESOLUTIONS": "0",                  // Usually 0 for the first tab
+            "MINUTES": "1455822320",       // e.g., "14526273"
+            "PROPOSALS": "907328997",   // e.g., "82736152"
+            "REPORTS AND LETTERS": "1385718104" // e.g., "99283746"
+        };
 
         let currentTabName = "RESOLUTIONS";
         let currentIdHeaderLabel = "RESOLUTION NO.";
 
-        // Basic localized safe CSV parser to manage escaped quotation strings
+        // Robust client-side CSV text formatting parser
         function parseCSV(text) {
             let lines = [];
             let row = [""];
@@ -158,18 +154,13 @@
             const tableBody = document.getElementById("document-table-body");
             document.getElementById("col-header-id").innerText = currentIdHeaderLabel;
             
-            // Generate GSheets single tab request URL using the gid query param structure
-            // Resolutions: gid=0, Minutes: gid=1, Proposals: gid=2, Reports/Letters: gid=3 (adjust if tabs are reordered)
-            let gid = "0";
-            if (currentTabName === "MINUTES") gid = "1";
-            if (currentTabName === "PROPOSALS") gid = "2";
-            if (currentTabName === "REPORTS AND LETTERS") gid = "3";
-
-            const fetchUrl = `${GOOGLE_SHEET_CSV_URL}&gid=${gid}`;
+            // Generate the specialized url targeting the single correct tab via mapped variables
+            const tabGid = GID_MAPPING[currentTabName];
+            const fetchUrl = `${BASE_CSV_URL}&gid=${tabGid}`;
 
             try {
-                // If user forgot to change placeholder string, render visual mocking rows instead of failing hard
-                if (GOOGLE_SHEET_CSV_URL.includes("https://docs.google.com/spreadsheets/d/e/2PACX-1vTIFgXyOttJeJGsVaLwfFtNWb-c1YCJiJ8R5siL32ykA47xYYY7b8KmPXm_42vNAbaHXOkcqEG3tRCu/pub?output=csvCu/pub?output=csv")) {
+                // Safeguard check if user forgot to replace configuration setups
+                if (BASE_CSV_URL.includes("YOUR_BASE_PUBLISHED_CSV_LINK")) {
                     renderMockRows();
                     return;
                 }
@@ -180,7 +171,7 @@
 
                 tableBody.innerHTML = "";
 
-                // Skip the first tracking row header (A1:C1)
+                // Loop through entries skipping index 0 (A1:C1 custom headers row)
                 for (let i = 1; i < rows.length; i++) {
                     const columns = rows[i];
                     if (columns.length < 2 || !columns[0].trim()) continue;
@@ -191,9 +182,14 @@
 
                     tableBody.innerHTML += createRowHtml(id, title, link);
                 }
+                
+                if(tableBody.innerHTML === "") {
+                    tableBody.innerHTML = `<tr><td colspan="3" class="py-8 text-center text-slate-400 font-medium">No documents uploaded into this category directory ledger yet.</td></tr>`;
+                }
+
             } catch (error) {
-                console.error("Cloud document alignment error: ", error);
-                tableBody.innerHTML = `<tr><td colspan="3" class="py-8 text-center text-red-500 font-medium">Failed to establish cloud data feed. Verify network permissions or configuration setups.</td></tr>`;
+                console.error("Cloud document database processing fault: ", error);
+                tableBody.innerHTML = `<tr><td colspan="3" class="py-8 text-center text-red-500 font-medium">Failed to establish cloud data feed connection parameters. Verify sync configurations.</td></tr>`;
             }
         }
 
@@ -213,7 +209,6 @@
         }
 
         function renderMockRows() {
-            // Local fallback template so your code displays realistic layouts instantly locally
             const tableBody = document.getElementById("document-table-body");
             tableBody.innerHTML = "";
             const sampleLabel = currentIdHeaderLabel.split(" ")[0];
@@ -221,7 +216,7 @@
             for(let i=1; i<=3; i++) {
                 tableBody.innerHTML += createRowHtml(
                     `${sampleLabel}-2026-00${i}`, 
-                    `Sample Official Framework Document Title detailing active administrative parameters for ${currentTabName.toLowerCase()} execution protocols.`, 
+                    `Template dynamic layout ledger record displaying active configuration structures for ${currentTabName.toLowerCase()} execution protocols. Replace base URLs to read sheet entries live.`, 
                     "#"
                 );
             }
@@ -231,7 +226,6 @@
             currentTabName = tabName;
             currentIdHeaderLabel = idLabel;
 
-            // Handle UI highlighting switch
             const buttonIds = { 'RESOLUTIONS': 'tab-RESOLUTIONS', 'MINUTES': 'tab-MINUTES', 'PROPOSALS': 'tab-PROPOSALS', 'REPORTS AND LETTERS': 'tab-REPORTS' };
             Object.keys(buttonIds).forEach(key => {
                 const btn = document.getElementById(buttonIds[key]);
@@ -242,11 +236,10 @@
             fetchAndRenderData();
         }
 
-        // Run initial loading sequence execution on boot
         window.onload = () => {
             setActiveTab('RESOLUTIONS', 'RESOLUTION NO.');
         };
     </script>
 </body>
-          </html>
-  
+    </html>
+        
