@@ -123,7 +123,7 @@
     <!-- Google Sheets Dynamic CSV Fetch & Render Script -->
     <script>
         // REPLACE THIS URL with your actual Google Sheet published Comma-separated values (.csv) link
-        const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIFgXyOttJeJGsVaLwfFtNWb-c1YCJiJ8R5siL32ykA47xYYY7b8KmPXm_42vNAbaHXOkcqEG3tRCu/pub?output=csv";
+        const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIFgXyOttJeJGsVaLwfFtNWb-c1YCJiJ8R5siL32ykA47xYYY7b8KmPXm_42vNAbaHXOkcqEG3tRCu/pub?output=csvCu/pub?output=csv";
 
         let currentTabName = "RESOLUTIONS";
         let currentIdHeaderLabel = "RESOLUTION NO.";
@@ -169,7 +169,7 @@
 
             try {
                 // If user forgot to change placeholder string, render visual mocking rows instead of failing hard
-                if (GOOGLE_SHEET_CSV_URL.includes("https://docs.google.com/spreadsheets/d/e/2PACX-1vTIFgXyOttJeJGsVaLwfFtNWb-c1YCJiJ8R5siL32ykA47xYYY7b8KmPXm_42vNAbaHXOkcqEG3tRCu/pub?output=csv")) {
+                if (GOOGLE_SHEET_CSV_URL.includes("https://docs.google.com/spreadsheets/d/e/2PACX-1vTIFgXyOttJeJGsVaLwfFtNWb-c1YCJiJ8R5siL32ykA47xYYY7b8KmPXm_42vNAbaHXOkcqEG3tRCu/pub?output=csvCu/pub?output=csv")) {
                     renderMockRows();
                     return;
                 }
