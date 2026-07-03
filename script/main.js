@@ -56,11 +56,11 @@ function buildNavigation(config) {
         const isActive =
             url.includes(path) ||
             (p.name === 'Officers' &&
-             path.includes('document')) ||
+             path.includes('officers')) ||
             (p.name === 'Gazettes' &&
              path.includes('document'));
-            (p.name === 'About' &&
-             path.includes('document'));
+            (p.name === 'About Us' &&
+             path.includes('about'));
 
         const cls = isActive
             ? 'text-blue-600 font-bold'
