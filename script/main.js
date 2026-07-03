@@ -72,6 +72,8 @@ function buildNavigation(config) {
         mobile.innerHTML +=
             `<a href="${url}" class="block py-3 px-2 ${cls} border-b border-slate-50">${p.name}</a>`;
     });
+    const linkMap = { 'LINK_2_PATH': ['btn-roster'], 'LINK_1_PATH': ['btn-docs'], 'LINK_3_PATH': ['btn-feedback'], 'LINK_4_PATH': ['btn-clubs'], 'LINK_5_PATH': ['btn-about'] };
+            Object.keys(linkMap).forEach(key => { linkMap[key].forEach(id => { const el = document.getElementById(id); if(el) el.href = config[key] || '#'; }); });
 
     lucide.createIcons();
       }
