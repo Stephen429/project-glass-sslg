@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Clubs & Organizations | LDVTS-SSLG</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
+    <header class="border-b border-slate-100 sticky top-0 z-50 bg-white">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a id="logo-link" href="#" class="flex items-center">
+                <img id="header-logo" src="" class="h-8" alt="">
+            </a>
+            <nav id="nav-links" class="hidden md:flex items-center space-x-6 text-xs font-bold uppercase text-slate-500"></nav>
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 text-slate-600"><i data-lucide="menu"></i></button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 py-2 space-y-1 text-xs font-bold uppercase text-slate-500 flex flex-col"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-4xl mx-auto px-4 py-12 fade-in">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-black mb-4">Clubs & Organizations</h1>
+            <p class="text-slate-500 max-w-lg mx-auto text-sm">Explore the various student-led clubs and organizations at Lydia D. Villangca Trade School.</p>
+        </div>
+
+        <!-- Clubs Grid -->
+        <div id="clubs-container" class="grid md:grid-cols-2 gap-6 mb-16">
+            <p class="text-slate-400 text-sm col-span-full text-center">Loading organizations...</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-100 py-16">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+                <h3 class="font-black text-lg mb-4">LDVTS-SSLG'S Project GLASS</h3>
+                <p class="text-slate-500 text-sm leading-relaxed max-w-sm">
+                    This transparency dashboard is an open-initiative led by the Supreme Secondary Learner Government of Lydia D. Villangca Trade School. 
+                    Built to foster accountability and ease of access to school records, policies, and student-led initiatives.
+                </p>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 mt-12 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+            <p class="mb-4 md:mb-0">© 2026 LDVTS Supreme Secondary Learner Government. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script/main.js"></script>
+<script src="script/clubs.js"></script>
+</body>
+  </html>
+  
