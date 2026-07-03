@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Documents | LDVTS-SSLG</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
+
+    <body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
+    <header class="border-b border-slate-100 sticky top-0 z-50 bg-white">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a id="logo-link" href="#" class="flex items-center">
+                <img id="header-logo" src="" class="h-8" alt="">
+            </a>
+            <nav id="nav-links" class="hidden md:flex items-center space-x-6 text-xs font-bold uppercase text-slate-500"></nav>
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 text-slate-600"><i data-lucide="menu"></i></button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 py-2 space-y-1 text-xs font-bold uppercase text-slate-500 flex flex-col"></div>
+    </header>
+        
+    <main class="flex-grow max-w-4xl mx-auto px-4 py-8 fade-in w-full overflow-hidden">
+        <h1 class="text-3xl font-black mb-2">Documents & Gazettes</h1>
+        <p class="text-slate-500 text-sm mb-8">Access official publications, reports, and documented gazettes.</p>
+
+        <section class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm mb-6">
+            <div class="flex flex-col md:flex-row gap-3">
+                <input type="text" id="search-input" onkeyup="renderTable()" placeholder="Search by title or ID..." class="flex-grow px-4 py-2.5 rounded-lg border text-sm outline-none">
+                <select id="year-filter" onchange="renderTable()" class="px-4 py-2.5 rounded-lg border text-sm bg-slate-50">
+                    <option value="ALL">All Years</option>
+                </select>
+                <select id="sort-filter" onchange="renderTable()" class="px-4 py-2.5 rounded-lg border text-sm bg-slate-50">
+                    <option value="NEWEST">Newest First</option>
+                    <option value="OLDEST">Oldest First</option>
+                </select>
+            </div>
+        </section>
+
+        <div id="tab-group" class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-6 text-xs font-bold uppercase">
+            <button onclick="setCategory('RESOLUTION')" id="btn-RESOLUTION" class="py-3 rounded-lg bg-white border border-blue-600 text-blue-600 shadow-sm">Resolutions</button>
+            <button onclick="setCategory('MINUTES')" id="btn-MINUTES" class="py-3 rounded-lg bg-white border text-slate-600">Minutes</button>
+            <button onclick="setCategory('PROPOSAL')" id="btn-PROPOSAL" class="py-3 rounded-lg bg-white border text-slate-600">Proposals</button>
+            <button onclick="setCategory('REPORT')" id="btn-REPORT" class="py-3 rounded-lg bg-white border text-slate-600">Reports</button>
+        </div>
+
+        <section class="bg-white border rounded-2xl shadow-sm overflow-hidden">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-slate-50 border-b text-slate-400 text-[10px] font-bold uppercase tracking-widest">
+                    <tr>
+                        <th class="py-4 px-4 w-1/4">ID</th>
+                        <th class="py-4 px-4 w-1/2">Title</th>
+                        <th class="py-4 px-4 w-1/4 text-right">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="document-table-body" class="divide-y text-sm"></tbody>
+            </table>
+        </section>
+    </main>
+
+        <footer class="bg-white border-t border-slate-100 py-16">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+                <h3 class="font-black text-lg mb-4">LDVTS-SSLG'S Project GLASS</h3>
+                <p class="text-slate-500 text-sm leading-relaxed max-w-sm">
+                    This transparency dashboard is an open-initiative led by the Supreme Secondary Learner Government of Lydia D. Villangca Trade School. 
+                    Built to foster accountability and ease of access to school records, policies, and student-led initiatives.
+                </p>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 mt-12 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+            <p class="mb-4 md:mb-0">© 2026 LDVTS Supreme Secondary Learner Government. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script/main.js"></script>
+<script src="script/documents.js"></script>
+</body>
+</html>
