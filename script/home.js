@@ -14,6 +14,23 @@ async function init() {
     loadLogo(config);
     buildNavigation(config);
 
+    const linkMap = {
+        'LINK_2_PATH': ['btn-roster'],
+        'LINK_1_PATH': ['btn-docs'],
+        'LINK_3_PATH': ['btn-feedback'],
+        'LINK_4_PATH': ['btn-clubs'],
+        'LINK_5_PATH': ['btn-about']
+    };
+
+    Object.keys(linkMap).forEach(key => {
+        linkMap[key].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.href = config[key] || '#';
+            }
+        });
+    });
+
     fetch(`${MASTER_SHEET_URL}&gid=${METRICS_GID}`)
         .then(r => r.text())
         .then(t => {
