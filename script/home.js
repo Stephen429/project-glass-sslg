@@ -137,7 +137,6 @@ async function init() {
         });
 
 const carousel = document.getElementById('action-carousel');
-
 const imgs = [...(config.ACTION_IMAGES?.split('|') || [])];
 const duplicated = [...imgs, ...imgs];
 
@@ -145,35 +144,14 @@ duplicated.forEach(name => {
     name = name.trim();
     if (!name) return;
 
-    const pngPath = `assets/carousel/${name}.png`;
-    const jpgPath = `assets/carousel/${name}.jpg`;
-
-    const img = new Image();
-
-    img.onload = () => addSlide(pngPath);
-
-    img.onerror = () => {
-        const jpg = new Image();
-
-        jpg.onload = () => addSlide(jpgPath);
-
-        jpg.onerror = () => {
-            console.warn(`Carousel image "${name}" not found.`);
-        };
-
-        jpg.src = jpgPath;
-    };
-
-    img.src = pngPath;
-});
-
-function addSlide(src) {
     carousel.innerHTML += `
         <div class="flex-shrink-0 w-[300px] h-56 rounded-2xl overflow-hidden bg-slate-200">
-            <img src="${src}" class="w-full h-full object-cover">
+            <img src="assets/carousel/${name}.png"
+                 onerror="this.onerror=null;this.src='assets/carousel/${name}.jpg';"
+                 class="w-full h-full object-cover">
         </div>
     `;
-}
+});
     lucide.createIcons();
 }
 
