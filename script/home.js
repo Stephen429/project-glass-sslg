@@ -136,17 +136,47 @@ async function init() {
             });
         });
 
-    const imgs = config.ACTION_IMAGES?.split('|') || [];
-    const carousel =
-        document.getElementById('action-carousel');
+    const imgs = [...(config.ACTION_IMAGES?.split('|') || [])];
+    const duplicated = [...imgs, ...imgs];
 
-    [...imgs, ...imgs].forEach(url => {
-        carousel.innerHTML += `
-            <div class="flex-shrink-0 w-[300px] h-56 rounded-2xl overflow-hidden bg-slate-200">
-                <img src="${url.trim()}"
-                     class="w-full h-full object-cover">
-            </div>`;
-    });
+    duplicated.forEach(name => {
+    // same code as above
+});
+    name = name.trim();
+    if (!name) return;
+
+    // Try PNG first
+    const img = new Image();
+
+    img.onload = () => {
+        addSlide(`assets/carousel/${name}.png`);
+    };
+
+    img.onerror = () => {
+        // If PNG doesn't exist, try JPG
+        const jpg = new Image();
+
+        jpg.onload = () => {
+            addSlide(`assets/carousel/${name}.jpg`);
+        };
+
+        jpg.onerror = () => {
+            console.warn(`Carousel image "${name}" not found.`);
+        };
+
+        jpg.src = `assets/carousel/${name}.jpg`;
+    };
+
+    img.src = `assets/carousel/${name}.png`;
+});
+
+function addSlide(src) {
+    carousel.innerHTML += `
+        <div class="flex-shrink-0 w-[300px] h-56 rounded-2xl overflow-hidden bg-slate-200">
+            <img src="${src}" class="w-full h-full object-cover">
+        </div>
+    `;
+                                    });
 
     lucide.createIcons();
 }
