@@ -139,8 +139,6 @@ async function init() {
 const carousel = document.getElementById('action-carousel');
 const imgs = [...(config.ACTION_IMAGES?.split('|') || [])];
 const duplicated = [...imgs, ...imgs];
-    console.log(imgs);
-    console.log(duplicated);
 
 duplicated.forEach(name => {
     name = name.trim();
