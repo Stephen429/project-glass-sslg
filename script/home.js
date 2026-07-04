@@ -136,8 +136,6 @@ async function init() {
             });
         });
 
-    const carousel = document.getElementById('action-carousel');
-
 const carousel = document.getElementById('action-carousel');
 
 const imgs = [...(config.ACTION_IMAGES?.split('|') || [])];
