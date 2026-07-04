@@ -23,12 +23,14 @@ function loadLogo(config) {
     if (!logo || !logoLink) return;
 
     if (config.IMG_LOGO_URL) {
+        // Works with assets/sslg.png or any relative path
         logo.src = config.IMG_LOGO_URL;
-        logoLink.classList.add('logo-loaded');
+
+        // Reveal the logo
+        document.documentElement.classList.add('logo-loaded');
     }
 
-    logoLink.href =
-        config.LINK_0_PATH || 'index.html';
+    logoLink.href = config.LINK_0_PATH || 'index.html';
 }
 
 function buildNavigation(config) {
