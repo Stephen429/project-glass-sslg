@@ -11,9 +11,7 @@ const ROSTER_GID = "416625956";
 async function init() {
     const config = await loadConfig();
     console.log(config);
-    console.log(imgs);
-    console.log(duplicated);
-
+    
     loadLogo(config);
     buildNavigation(config);
 
@@ -141,6 +139,8 @@ async function init() {
 const carousel = document.getElementById('action-carousel');
 const imgs = [...(config.ACTION_IMAGES?.split('|') || [])];
 const duplicated = [...imgs, ...imgs];
+    console.log(imgs);
+    console.log(duplicated);
 
 duplicated.forEach(name => {
     name = name.trim();
