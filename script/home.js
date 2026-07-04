@@ -138,6 +138,8 @@ async function init() {
 
     const carousel = document.getElementById('action-carousel');
 
+const carousel = document.getElementById('action-carousel');
+
 const imgs = [...(config.ACTION_IMAGES?.split('|') || [])];
 const duplicated = [...imgs, ...imgs];
 
@@ -150,16 +152,12 @@ duplicated.forEach(name => {
 
     const img = new Image();
 
-    img.onload = () => {
-        addSlide(pngPath);
-    };
+    img.onload = () => addSlide(pngPath);
 
     img.onerror = () => {
         const jpg = new Image();
 
-        jpg.onload = () => {
-            addSlide(jpgPath);
-        };
+        jpg.onload = () => addSlide(jpgPath);
 
         jpg.onerror = () => {
             console.warn(`Carousel image "${name}" not found.`);
@@ -177,8 +175,7 @@ function addSlide(src) {
             <img src="${src}" class="w-full h-full object-cover">
         </div>
     `;
-    };
-
+}
     lucide.createIcons();
 }
 
