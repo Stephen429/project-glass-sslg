@@ -11,8 +11,6 @@ const ROSTER_GID = "416625956";
 async function init() {
     const config = await loadConfig();
     console.log(config);
-    console.log(imgs);
-    console.log(duplicated);
 
     loadLogo(config);
     buildNavigation(config);
